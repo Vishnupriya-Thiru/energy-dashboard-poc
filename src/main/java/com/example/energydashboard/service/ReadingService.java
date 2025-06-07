@@ -28,10 +28,10 @@ private final AlertRepository alertrepo;
 		Meter meter=meterrepo.findById(meterid).orElseThrow(()-> new RuntimeException ("Meter not found"));
 		reading.setMeter(meter);
 		EnergyReading savedreading=readingrepo.save(reading);
-		if (savedreading.getConsumptionInKWH() > 5.0) {
+		if (reading.getConsumptionInKWH() > 5.0) {
 		    Alert alert = new Alert();
 		    alert.setTimestamp(LocalDateTime.now());
-		    alert.setMessage("High consumption: " + savedreading.getConsumptionInKWH() + " kWh");
+		    alert.setMessage("High consumption: " + reading.getConsumptionInKWH() + " kWh");
 		    alert.setMeter(meter);
 		    alertrepo.save(alert);
 		}
