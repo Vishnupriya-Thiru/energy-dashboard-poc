@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.energydashboard.dto.MeterSummaryDTO;
 import com.example.energydashboard.model.Meter;
 import com.example.energydashboard.service.MeterService;
 
@@ -61,5 +62,9 @@ public class MeterController {
 		meterservice.delete(id);
         return ResponseEntity.noContent().build();
     }
+	@GetMapping("/summary")
+	public List<MeterSummaryDTO> getSummary() {
+	    return meterservice.getMeterSummaries();
+	}
 	
 }
